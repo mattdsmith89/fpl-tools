@@ -5,7 +5,7 @@ CURR_VERSION=$(node -e "console.log(require('./package.json').version);");
 VER_HASH=$(git rev-list -n 1 v$CURR_VERSION);
 
 npm run lint;
-npm run test;
+npm run test -- --watch=false;
 
 if [ $CURR_COMMIT == $VER_HASH ]
 then
