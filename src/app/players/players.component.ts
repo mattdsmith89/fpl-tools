@@ -14,7 +14,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   private teams: Team[] = [];
   private selectedFilter = 'ALL';
-  private selectedSort = 'POINTS';
+  private selectedSorts = ['POINTS'];
 
   public isNaN = Number.isNaN;
 
@@ -26,31 +26,40 @@ export class PlayersComponent implements OnInit, OnDestroy {
     } else {
       players = this.players.filter(p => p.position === this.selectedFilter);
     }
+
+    if (this.maxPrice && this.maxPrice > 0) {
+      players = players.filter(p => p.currentPrice <= this.maxPrice * 10);
+    }
+
     return this.sortPlayers(players);
   }
+
+  public maxPrice: number;
 
   constructor(private dataService: DataService) { }
 
   private sortPlayers(players: Player[]): Player[] {
     let sortedPlayers = players;
 
-    switch (this.selectedSort) {
-      case 'POINTS':
-        sortedPlayers = this.sortByPoints(players);
-        break;
-      case 'PRICE':
-        sortedPlayers = this.sortByPrice(players);
-        break;
-      case 'MINS':
-        sortedPlayers = this.sortByMins(players);
-        break;
-      case 'PP90':
-        sortedPlayers = this.sortByPP90(players);
-        break;
-      case 'PP£':
-        sortedPlayers = this.sortByPPMil(players);
-        break;
-    }
+    this.selectedSorts.forEach(sort => {
+      switch (sort) {
+        case 'POINTS':
+          sortedPlayers = this.sortByPoints(sortedPlayers);
+          break;
+        case 'PRICE':
+          sortedPlayers = this.sortByPrice(sortedPlayers);
+          break;
+        case 'MINS':
+          sortedPlayers = this.sortByMins(sortedPlayers);
+          break;
+        case 'PP90':
+          sortedPlayers = this.sortByPP90(sortedPlayers);
+          break;
+        case 'PP£':
+          sortedPlayers = this.sortByPPMil(sortedPlayers);
+          break;
+      }
+    });
 
     return sortedPlayers;
   }
@@ -80,7 +89,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
   }
 
   public sortClass(sort: string): string {
-    return sort === this.selectedSort ? 'is-selected is-info' : '';
+    return this.selectedSorts.includes(sort) ? 'is-selected is-info' : '';
   }
 
   public teamClass(player: Player): string {
@@ -192,8 +201,14 @@ export class PlayersComponent implements OnInit, OnDestroy {
     this.selectedFilter = filter;
   }
 
-  public applySort(sort: string): void {
-    this.selectedSort = sort;
+  public toggleSort(sort: string): void {
+    if (this.selectedSorts.includes(sort)) {
+      this.selectedSorts = this.selectedSorts.filter(s => s !== sort);
+    } else {
+      const temp = this.selectedSorts.reverse();
+      temp.push(sort);
+      this.selectedSorts = temp.reverse();
+    }
   }
 
   public ngOnInit() {

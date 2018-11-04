@@ -25,12 +25,18 @@
           </p>
           <div class="level-item">
             <div class="buttons has-addons">
-              <a class="button {{sortClass('POINTS')}}" (click)="applySort('POINTS')">POINTS</a>
-              <a class="button {{sortClass('MINS')}}" (click)="applySort('MINS')">MINS</a>
-              <a class="button {{sortClass('PP90')}}" (click)="applySort('PP90')">PP90</a>
-              <a class="button {{sortClass('PP£')}}" (click)="applySort('PP£')">PP£</a>
-              <a class="button {{sortClass('PRICE')}}" (click)="applySort('PRICE')">PRICE</a>
+              <a class="button {{sortClass('POINTS')}}" (click)="toggleSort('POINTS')">POINTS</a>
+              <a class="button {{sortClass('MINS')}}" (click)="toggleSort('MINS')">MINS</a>
+              <a class="button {{sortClass('PP90')}}" (click)="toggleSort('PP90')">PP90</a>
+              <a class="button {{sortClass('PP£')}}" (click)="toggleSort('PP£')">PP£</a>
+              <a class="button {{sortClass('PRICE')}}" (click)="toggleSort('PRICE')">PRICE</a>
             </div>
+          </div>
+          <p class="level-item tool-label">
+            <strong>MAX PRICE</strong>
+          </p>
+          <div class="level-item">
+            <input type="text" class="input is-rounded price has-text-centered" [(ngModel)]="maxPrice">
           </div>
         </div>
       </div>
@@ -46,7 +52,8 @@
             <strong>{{teamCode(player)}}</strong>
           </div>
           <div class="level-item is-size-5">
-            <strong>{{player.firstName}} {{player.lastName}}</strong> <span *ngIf="player.dreamteam" class="icon dreamteam-star has-text-link"><i class="fas fa-star"></i></span>
+            <strong>{{player.firstName}} {{player.lastName}}</strong> <span *ngIf="player.dreamteam" class="icon dreamteam-star has-text-link"><i
+                class="fas fa-star"></i></span>
           </div>
         </div>
         <div class="level-right">
@@ -63,11 +70,12 @@
             </div>
           </div>
           <div class="level-item">
-              <div class="tags has-addons">
-                <div class="tag is-large">PP90</div>
-                <div class="tag is-large {{pp90Heat(player)}} pp90">{{isNaN(player.pointsPer90) ? "N/A" : player.pointsPer90 | number:'1.0-1'}}</div>
-              </div>
+            <div class="tags has-addons">
+              <div class="tag is-large">PP90</div>
+              <div class="tag is-large {{pp90Heat(player)}} pp90">{{isNaN(player.pointsPer90) ? "N/A" :
+                player.pointsPer90 | number:'1.0-1'}}</div>
             </div>
+          </div>
           <div class="level-item">
             <div class="tags has-addons">
               <div class="tag is-large">PRICE</div>
@@ -75,11 +83,11 @@
             </div>
           </div>
           <div class="level-item">
-              <div class="tags has-addons">
-                <div class="tag is-large">PP£</div>
-                <span class="tag is-large {{ppMilHeat(player)}} ppmil">{{player.pointsPerMillion | number:'1.0-1'}}</span>
-              </div>
+            <div class="tags has-addons">
+              <div class="tag is-large">PP£</div>
+              <span class="tag is-large {{ppMilHeat(player)}} ppmil">{{player.pointsPerMillion | number:'1.0-1'}}</span>
             </div>
+          </div>
           <div class="level-item">
             <span class="tag is-large position {{positionClass(player)}}">{{player.position}}</span>
           </div>

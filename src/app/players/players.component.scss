@@ -16,6 +16,9 @@
       &.tool-label:not(:first-child) {
         padding-left: 2em;
       }
+      & input.price {
+        width: 5em;
+      }
     }
   }
 }
