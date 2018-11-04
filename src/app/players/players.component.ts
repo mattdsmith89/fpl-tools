@@ -182,7 +182,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
 
   private heatClass(value: number, min: number, max: number): string {
     const range = max - min;
-    if (value < range / 6 || isNaN(value)) {
+    if (value < min + (range / 6) || isNaN(value)) {
       return 'is-ice';
     } else if (value < min + (range * 2 / 6)) {
       return 'is-colder';
