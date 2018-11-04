@@ -4,14 +4,14 @@ CURR_COMMIT=$(git rev-parse HEAD);
 CURR_VERSION=$(node -e "console.log(require('./package.json').version);");
 VER_HASH=$(git rev-list -n 1 v$CURR_VERSION);
 
-npm run lint;
-npm run test -- --watch=false;
-
 if [ $CURR_COMMIT == $VER_HASH ]
 then
     echo 'Already up to date'
     exit
 fi
+
+npm run lint;
+npm run test -- --watch=false;
 
 echo version...;
 npm version patch;
