@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { Overview } from './models/overview';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
+import { PlayerService } from './player.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class DataService {
     return this.dataSubject.asObservable();
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private playerService: PlayerService) {
     this.dataStore = { data: null };
   }
 
@@ -41,6 +42,7 @@ export class DataService {
   }
 
   private setData(data: Overview): void {
+    this.playerService.processPlayers(data.players);
     this.dataStore.data = data;
     this.dataSubject.next(Object.assign({}, this.dataStore).data);
   }

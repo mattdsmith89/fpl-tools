@@ -1,7 +1,6 @@
-<section class="hero is-danger is-thin">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <h2 class="subtitle">{{gameweekName}} deadline is at <strong>{{gameweekDeadline | date:'HH:mm'}}</strong> on <strong>{{gameweekDeadline | date:'EEEE d MMMM'}}</strong></h2>
+<div class="wrapper">
+    <div class="notification is-danger is-overlay" *ngIf="show" @fadeInOut>
+      <button class="delete" (click)="hide()"></button>
+      {{gameweekName}} deadline is at <strong>{{gameweekDeadline | date:'HH:mm'}}</strong> on <strong>{{gameweekDeadline | date:'EEEE d MMMM'}}</strong>
     </div>
-  </div>
-</section>
+</div>

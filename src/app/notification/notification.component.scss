@@ -1,3 +1,14 @@
-.hero.is-thin .hero-body {
-  padding: 1rem;
+.wrapper {
+  width:100%;
+  z-index:99999;
+  position:fixed;
+  pointer-events:none;
+  display:flex;
+  flex-direction:column;
+  padding:15px;
+  top:0;
+  left:0;
+  right:0;
+  text-align:center;
+  align-items:center;
 }

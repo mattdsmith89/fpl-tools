@@ -5,6 +5,12 @@ import {
 } from '@angular/common/http/testing';
 import { DataService } from './data.service';
 import { environment } from 'src/environments/environment';
+import { Player } from './models/player';
+import { PlayerService } from './player.service';
+
+class MockPlayerService {
+  processPlayers(players: Player[]): void { }
+}
 
 describe('DataService', () => {
   let service: DataService;
@@ -12,7 +18,8 @@ describe('DataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [{provide: PlayerService, useClass: MockPlayerService}]
     });
     service = TestBed.get(DataService);
     httpTestingController = TestBed.get(HttpTestingController);

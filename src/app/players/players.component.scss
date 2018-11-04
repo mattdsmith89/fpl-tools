@@ -1,6 +1,12 @@
 @import 'teams';
 @import 'positions';
 
+@import 'theme';
+
+.dreamteam-star {
+  padding-left: 2em;
+}
+
 .level {
   &.tools {
     .level-item {
@@ -130,7 +136,36 @@
 }
 
 .tag {
+  &.is-ice {
+    background-color: $brand-darker-blue;
+    color: #fff;
+  }
+  &.is-colder {
+    background-color: $brand-blue;
+  }
+  &.is-cold {
+    background-color: $brand-green;
+  }
+  &.is-warm {
+    background-color: $brand-yellow;
+  }
+  &.is-warmer {
+    background-color: $brand-orange;
+  }
+  &.is-hot {
+    background-color: $brand-red;
+    color: #fff;
+  }
   &.points {
+    width: 2.5em;
+  }
+  &.minutes {
+    width: 2.5em;
+  }
+  &.pp90 {
+    width: 2.5em;
+  }
+  &.ppmil {
     width: 2.5em;
   }
   &.price {

@@ -46,7 +46,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(`Matt's FPL Tool`);
+    expect(compiled.querySelector('h1').textContent).toContain(`Matt's FPL Tools`);
   }));
 
   it('should load the data', () => {

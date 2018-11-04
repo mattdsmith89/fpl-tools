@@ -4,6 +4,7 @@ import { NotificationComponent } from './notification.component';
 import { DataService } from '../data.service';
 import { Observable, of } from 'rxjs';
 import { Overview } from '../models/overview';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 class MockDataService {
   public get data(): Observable<Overview> {
@@ -20,6 +21,7 @@ describe('NotificationComponent', () => {
       declarations: [
         NotificationComponent
       ],
+      imports: [NoopAnimationsModule],
       providers: [
         { provide: DataService, useClass: MockDataService }
       ]

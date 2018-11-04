@@ -1,12 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "initial-variables";
-@import "bulma";
-
-@import "mixins";
 
 @import "teams";
 @import "theme";
 @import "positions";
+
+$orange: $brand-orange;
+$yellow: $brand-yellow;
+$green: $brand-green;
+$turquoise: $brand-teal;
+$cyan: $brand-blue;
+$blue: $brand-darker-blue;
+$purple: $brand-purple;
+$red: $brand-red;
+
+$family-primary: $brand-font;
+
+@import "bulma";
 
 span {
     &.is-app-loading {
