@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import "initial-variables";
+@import "bulma";
+
+@import "mixins";
+
+@import "teams";
+@import "theme";
+@import "positions";
+
+span {
+    &.is-app-loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.5;
+        &:after {
+            @include loader;
+            position: absolute;
+            top: calc(50% - 0.75em);
+            right: 5em;
+            width: 1.5em;
+            height: 1.5em;
+            border-width: 0.25em;
+        }
+    }
+}

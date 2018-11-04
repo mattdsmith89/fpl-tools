@@ -1,0 +1,63 @@
+<section class="section">
+  <div class="container">
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <h1 class="title">Players</h1>
+        </div>
+      </div>
+      <div class="level-item">
+        <div class="level tools">
+          <p class="level-item tool-label">
+            <strong>FILTER</strong>
+          </p>
+          <div class="level-item">
+            <div class="buttons has-addons">
+              <a class="button {{filterClass('ALL')}}" (click)="applyFilter('ALL')">ALL</a>
+              <a class="button {{filterClass('GKP')}}" (click)="applyFilter('GKP')">GKP</a>
+              <a class="button {{filterClass('DEF')}}" (click)="applyFilter('DEF')">DEF</a>
+              <a class="button {{filterClass('MID')}}" (click)="applyFilter('MID')">MID</a>
+              <a class="button {{filterClass('FWD')}}" (click)="applyFilter('FWD')">FWD</a>
+            </div>
+          </div>
+          <p class="level-item tool-label">
+            <strong>SORT</strong>
+          </p>
+          <div class="level-item">
+            <div class="buttons has-addons">
+              <a class="button {{sortClass('POINTS')}}" (click)="applySort('POINTS')">POINTS</a>
+              <a class="button {{sortClass('PRICE')}}" (click)="applySort('PRICE')">PRICE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container is-fluid">
+    <div class="box {{teamClass(player)}}" *ngFor="let player of filteredPlayers">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item team-code">
+            <strong>{{teamCode(player)}}</strong>
+          </div>
+          <div class="level-item">
+            <span class="tag is-large is-info points">{{player.points}}</span>
+          </div>
+          <div class="level-item is-size-5">
+            <strong>{{player.firstName}} {{player.lastName}}</strong>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <span class="tag is-large is-warning price">{{playerPrice(player)}}</span>
+          </div>
+          <div class="level-item">
+            <span class="tag is-large position {{positionClass(player)}}">{{player.position}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

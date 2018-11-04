@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  overviewUri: 'https://ju0qun3ria.execute-api.eu-west-2.amazonaws.com/beta/fpl_overview'
 };
 
 /*

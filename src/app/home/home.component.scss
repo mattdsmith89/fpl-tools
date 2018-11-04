@@ -1,0 +1,158 @@
+@import 'teams';
+@import 'positions';
+
+.level {
+  &.tools {
+    .level-item {
+      &.tool-label {
+        padding-right: 1em;
+      }
+      &.tool-label:not(:first-child) {
+        padding-left: 2em;
+      }
+    }
+  }
+}
+
+.level-item {
+  &.team-code {
+    margin-left: -1em;
+    margin-right: 0.2em;
+    transform: rotate(270deg);
+    width: 2em;
+  }
+}
+
+.box {
+  border: 3px solid;
+  border-top: 0;
+  border-bottom: 0;
+
+  &.bournemouth {
+    background-color: rgba($bournemouth-primary, 0.4);
+    border-color: rgba($bournemouth-secondary, 0.4);
+  }
+
+  &.arsenal {
+    background-color: rgba($arsenal-primary, 0.4);
+    border-color: rgba($arsenal-secondary, 0.4);
+  }
+
+  &.brighton {
+    background-color: rgba($brighton-primary, 0.4);
+    border-color: rgba($brighton-secondary, 0.4);
+  }
+
+  &.burnley {
+    background-color: rgba($burnley-primary, 0.4);
+    border-color: rgba($burnley-secondary, 0.4);
+  }
+
+  &.cardiff {
+    background-color: rgba($cardiff-primary, 0.4);
+    border-color: rgba($cardiff-secondary, 0.4);
+  }
+
+  &.chelsea {
+    background-color: rgba($chelsea-primary, 0.4);
+    border-color: rgba($chelsea-secondary, 0.4);
+  }
+
+  &.palace {
+    background-color: rgba($palace-primary, 0.4);
+    border-color: rgba($palace-secondary, 0.4);
+  }
+
+  &.everton {
+    background-color: rgba($everton-primary, 0.4);
+    border-color: rgba($everton-secondary, 0.4);
+  }
+
+  &.fulham {
+    background-color: rgba($fulham-primary, 0.4);
+    border-color: rgba($fulham-secondary, 0.4);
+  }
+
+  &.huddersfield {
+    background-color: rgba($huddersfield-primary, 0.4);
+    border-color: rgba($huddersfield-secondary, 0.4);
+  }
+
+  &.leicester {
+    background-color: rgba($leicester-primary, 0.4);
+    border-color: rgba($leicester-secondary, 0.4);
+  }
+
+  &.liverpool {
+    background-color: rgba($liverpool-primary, 0.4);
+    border-color: rgba($liverpool-secondary, 0.4);
+  }
+
+  &.man-city {
+    background-color: rgba($man-city-primary, 0.4);
+    border-color: rgba($man-city-secondary, 0.4);
+  }
+
+  &.man-utd {
+    background-color: rgba($man-utd-primary, 0.4);
+    border-color: rgba($man-utd-secondary, 0.4);
+  }
+
+  &.newcastle {
+    background-color: rgba($newcastle-primary, 0.4);
+    border-color: rgba($newcastle-secondary, 0.4);
+  }
+
+  &.southampton {
+    background-color: rgba($southampton-primary, 0.4);
+    border-color: rgba($southampton-secondary, 0.4);
+  }
+
+  &.spurs {
+    background-color: rgba($spurs-primary, 0.4);
+    border-color: rgba($spurs-secondary, 0.4);
+  }
+
+  &.watford {
+    background-color: rgba($watford-primary, 0.4);
+    border-color: rgba($watford-secondary, 0.4);
+  }
+
+  &.west-ham {
+    background-color: rgba($west-ham-primary, 0.4);
+    border-color: rgba($west-ham-secondary, 0.4);
+  }
+
+  &.wolves {
+    background-color: rgba($wolves-primary, 0.4);
+    border-color: rgba($wolves-secondary, 0.4);
+  }
+}
+
+.tag {
+  &.points {
+    width: 2.5em;
+  }
+  &.price {
+    width: 4.5em;
+  }
+  &.position {
+    width: 3.5em;
+  }
+  &.goalkeeper {
+    background-color: $goalkeeper-color;
+    color: white;
+  }
+  &.defender {
+    background-color: $defender-color;
+    color: white;
+  }
+  &.midfielder {
+    background-color: $midfielder-color;
+    color: white;
+  }
+  &.forward {
+    background-color: $forward-color;
+    color: white;
+  }
+}
