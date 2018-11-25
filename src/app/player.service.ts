@@ -14,7 +14,8 @@ export class PlayerService {
 
   private processPlayer(player: Player): void {
     player.averageMinutes = player.gamesPlayed > 0 ? player.minutes / player.gamesPlayed : 0;
-    player.pointsPer90 = player.minutes < 90 ? NaN : player.points * 90 / player.minutes;
+    player.pointsPer90 = player.minutes < (20 * player.gamesPlayed) ? NaN : player.points * 90 / player.minutes;
     player.pointsPerMillion = player.points * 10 / player.currentPrice;
+    player.value = !isNaN(player.pointsPer90) ? player.pointsPer90 * 10 / player.currentPrice : NaN;
   }
 }

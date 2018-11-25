@@ -1,11 +1,6 @@
 <section class="section">
   <div class="container is-fixed-top">
     <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <h1 class="title">Players</h1>
-        </div>
-      </div>
       <div class="level-item">
         <div class="level tools">
           <p class="level-item tool-label">
@@ -27,8 +22,9 @@
             <div class="buttons has-addons">
               <a class="button {{sortClass('POINTS')}}" (click)="toggleSort('POINTS')">POINTS</a>
               <a class="button {{sortClass('MINS')}}" (click)="toggleSort('MINS')">MINS</a>
-              <a class="button {{sortClass('PP90')}}" (click)="toggleSort('PP90')">PP90</a>
-              <a class="button {{sortClass('PP£')}}" (click)="toggleSort('PP£')">PP£</a>
+              <a class="button {{sortClass('PP90')}}" (click)="toggleSort('PP90')">PPG</a>
+              <a class="button {{sortClass('PP£')}}" (click)="toggleSort('PP£')">PPM</a>
+              <a class="button {{sortClass('VAL')}}" (click)="toggleSort('VAL')">VAL</a>
               <a class="button {{sortClass('PRICE')}}" (click)="toggleSort('PRICE')">PRICE</a>
             </div>
           </div>
@@ -38,14 +34,20 @@
           <div class="level-item">
             <input type="text" class="input is-rounded price has-text-centered" [(ngModel)]="maxPrice">
           </div>
+          <p class="level-item tool-label">
+            <strong>MIN AVG MINS</strong>
+          </p>
+          <div class="level-item">
+            <input type="text" class="input is-rounded price has-text-centered" [(ngModel)]="minMins">
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section>
-  <div class="container is-fluid">
-    <div class="box {{teamClass(player)}}" *ngFor="let player of filteredPlayers">
+<section class="players-wrapper">
+  <cdk-virtual-scroll-viewport class="container is-fluid" itemSize="104" minBufferPx="3328" maxBufferPx="6656">
+    <div class="box {{teamClass(player)}}" [class.first]="first" [class.last]="last" *cdkVirtualFor="let player of filteredPlayers; let first = first; let last = last">
       <div class="level">
         <div class="level-left">
           <div class="level-item team-code">
@@ -71,9 +73,22 @@
           </div>
           <div class="level-item">
             <div class="tags has-addons">
-              <div class="tag is-large">PP90</div>
+              <div class="tag is-large">PPG</div>
               <div class="tag is-large {{pp90Heat(player)}} pp90">{{isNaN(player.pointsPer90) ? "N/A" :
                 player.pointsPer90 | number:'1.0-1'}}</div>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="tags has-addons">
+              <div class="tag is-large">PPM</div>
+              <span class="tag is-large {{ppMilHeat(player)}} ppmil">{{player.pointsPerMillion | number:'1.0-1'}}</span>
+            </div>
+          </div>
+          <div class="level-item">
+            <div class="tags has-addons">
+              <div class="tag is-large">VAL</div>
+              <span class="tag is-large {{valHeat(player)}} value">{{isNaN(player.value) ? "N/A" : player.value |
+                percent}}</span>
             </div>
           </div>
           <div class="level-item">
@@ -83,16 +98,11 @@
             </div>
           </div>
           <div class="level-item">
-            <div class="tags has-addons">
-              <div class="tag is-large">PP£</div>
-              <span class="tag is-large {{ppMilHeat(player)}} ppmil">{{player.pointsPerMillion | number:'1.0-1'}}</span>
-            </div>
-          </div>
-          <div class="level-item">
             <span class="tag is-large position {{positionClass(player)}}">{{player.position}}</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </cdk-virtual-scroll-viewport>
+
 </section>

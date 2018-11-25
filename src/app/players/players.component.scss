@@ -3,6 +3,27 @@
 
 @import 'theme';
 
+.players-wrapper {
+  position: fixed;
+  bottom: 0;
+  top: 184px;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  mask-image: gradient(linear, left 4%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  -webkit-mask-image: -webkit-gradient(linear, left 4%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  .first {
+    margin-top: 40px;
+  }
+  .last {
+    margin-bottom: 10px;
+  }
+}
+
+cdk-virtual-scroll-viewport {
+  height: 100%;
+}
+
 .dreamteam-star {
   padding-left: 2em;
 }
@@ -138,6 +159,8 @@
   }
 }
 
+$default-tag-value-width: 2.5em;
+
 .tag {
   &.is-ice {
     background-color: $brand-darker-blue;
@@ -161,16 +184,19 @@
     color: #fff;
   }
   &.points {
-    width: 2.5em;
+    width: $default-tag-value-width;
   }
   &.minutes {
-    width: 2.5em;
+    width: $default-tag-value-width;
   }
   &.pp90 {
-    width: 2.5em;
+    width: $default-tag-value-width;
   }
   &.ppmil {
-    width: 2.5em;
+    width: $default-tag-value-width;
+  }
+  &.value {
+    width: 3em;
   }
   &.price {
     width: 4.5em;

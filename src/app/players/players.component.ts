@@ -31,10 +31,15 @@ export class PlayersComponent implements OnInit, OnDestroy {
       players = players.filter(p => p.currentPrice <= this.maxPrice * 10);
     }
 
+    if (this.minMins && this.minMins > 0) {
+      players = players.filter(p => p.averageMinutes > this.minMins);
+    }
+
     return this.sortPlayers(players);
   }
 
   public maxPrice: number;
+  public minMins: number;
 
   constructor(private dataService: DataService) { }
 
@@ -58,6 +63,8 @@ export class PlayersComponent implements OnInit, OnDestroy {
         case 'PP£':
           sortedPlayers = this.sortByPPMil(sortedPlayers);
           break;
+        case 'VAL':
+          sortedPlayers = this.sortByValue(sortedPlayers);
       }
     });
 
@@ -82,6 +89,10 @@ export class PlayersComponent implements OnInit, OnDestroy {
 
   private sortByPrice(players: Player[]): Player[] {
     return players.sort((p1, p2) => p2.currentPrice - p1.currentPrice);
+  }
+
+  private sortByValue(players: Player[]): Player[] {
+    return players.sort((p1, p2) => p2.value - p1.value);
   }
 
   public filterClass(filter: string): string {
@@ -141,43 +152,45 @@ export class PlayersComponent implements OnInit, OnDestroy {
   }
 
   public pointsHeat(player: Player): string {
-    const lastIndex = this.players.length - 1;
-    const maxPoints = this.sortByPoints(this.players)[0].points;
-    const minPoints = this.sortByPoints(this.players)[lastIndex].points;
+    const maxPoints = Math.max(...this.players.filter(p => p.position === player.position).map(p => p.points));
+    const minPoints = Math.min(...this.players.filter(p => p.position === player.position).map(p => p.points));
 
     return this.heatClass(player.points, minPoints, maxPoints);
   }
 
   public minutesHeat(player: Player): string {
-    const lastIndex = this.players.length - 1;
-    const maxMins = this.sortByMins(this.players)[0].averageMinutes;
-    const minMins = this.sortByMins(this.players)[lastIndex].averageMinutes;
+    const maxMins = Math.max(...this.players.map(p => p.averageMinutes));
+    const minMins = Math.min(...this.players.map(p => p.averageMinutes));
 
     return this.heatClass(player.averageMinutes, minMins, maxMins);
   }
 
   public pp90Heat(player: Player): string {
-    const lastIndex = this.players.filter(p => p.minutes > 90).length - 1;
-    const maxPP90 = this.sortByPP90(this.players.filter(p => p.minutes > 90))[0].pointsPer90;
-    const minPP90 = this.sortByPP90(this.players.filter(p => p.minutes > 90))[lastIndex].pointsPer90;
+    const maxPP90 = Math.max(...this.players.filter(p => p.position === player.position && !isNaN(p.pointsPer90)).map(p => p.pointsPer90));
+    const minPP90 = Math.min(...this.players.filter(p => p.position === player.position && !isNaN(p.pointsPer90)).map(p => p.pointsPer90));
 
     return this.heatClass(player.pointsPer90, minPP90, maxPP90);
   }
 
   public ppMilHeat(player: Player): string {
-    const lastIndex = this.players.length - 1;
-    const maxPPmil = this.sortByPPMil(this.players)[0].pointsPerMillion;
-    const minPPmil = this.sortByPPMil(this.players)[lastIndex].pointsPerMillion;
+    const maxPPmil = Math.max(...this.players.filter(p => p.position === player.position).map(p => p.pointsPerMillion));
+    const minPPmil = Math.min(...this.players.filter(p => p.position === player.position).map(p => p.pointsPerMillion));
 
     return this.heatClass(player.pointsPerMillion, minPPmil, maxPPmil);
   }
 
   public priceHeat(player: Player): string {
-    const lastIndex = this.players.filter(p => p.position === player.position).length - 1;
-    const maxPrice = this.sortByPrice(this.players.filter(p => p.position === player.position))[0].currentPrice;
-    const minPrice = this.sortByPrice(this.players.filter(p => p.position === player.position))[lastIndex].currentPrice;
+    const maxPrice = Math.max(...this.players.filter(p => p.position === player.position).map(p => p.currentPrice));
+    const minPrice = Math.min(...this.players.filter(p => p.position === player.position).map(p => p.currentPrice));
 
     return this.heatClass(player.currentPrice, minPrice, maxPrice);
+  }
+
+  public valHeat(player: Player): string {
+    const maxValue = Math.max(...this.players.filter(p => p.position === player.position && !isNaN(p.value)).map(p => p.value));
+    const minValue = Math.min(...this.players.filter(p => p.position === player.position && !isNaN(p.value)).map(p => p.value));
+
+    return this.heatClass(player.value, minValue, maxValue);
   }
 
   private heatClass(value: number, min: number, max: number): string {

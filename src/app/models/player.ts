@@ -11,4 +11,5 @@ export interface Player {
   averageMinutes: number;
   pointsPerMillion: number;
   pointsPer90: number;
+  value: number;
 }
