@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 CURR_COMMIT=$(git rev-parse HEAD);
 CURR_VERSION=$(node -e "console.log(require('./package.json').version);");
 VER_HASH=$(git rev-list -n 1 v$CURR_VERSION);
@@ -12,21 +14,9 @@ fi
 
 npm run lint;
 
-if [[$? -ne 0]] ; then
-    exit 1
-fi
-
 npm run test -- --watch=false;
 
-if [[$? -ne 0]] ; then
-    exit 1
-fi
-
 npm run build;
-
-if [[$? -ne 0]] ; then
-    exit 1
-fi
 
 echo version...;
 npm version patch;
