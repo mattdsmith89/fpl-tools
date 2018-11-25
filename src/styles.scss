@@ -19,18 +19,18 @@ $family-primary: $brand-font;
 @import "bulma";
 
 span {
-    &.is-app-loading {
-        position: relative;
-        pointer-events: none;
-        opacity: 0.5;
-        &:after {
-            @include loader;
-            position: absolute;
-            top: calc(50% - 0.75em);
-            right: 5em;
-            width: 1.5em;
-            height: 1.5em;
-            border-width: 0.25em;
-        }
-    }
+  &.is-loading {
+      position: relative;
+      pointer-events: none;
+      opacity: 0.5;
+      &:after {
+          @include loader;
+          position: absolute;
+          top: calc(50% - 2.5em);
+          left: calc(50% - 2.5em);
+          width: 5em;
+          height: 5em;
+          border-width: 0.25em;
+      }
+  }
 }

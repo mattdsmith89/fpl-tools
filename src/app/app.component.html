@@ -21,9 +21,9 @@
 <ng-template #noData>
   <section class="hero is-fullheight-with-navbar">
     <div class="hero-body">
-      <div class="container">
+      <div class="container has-text-centered">
         <h1 class="title">
-          <span *ngIf="loading"><span class="loader"></span></span>
+          <span class="is-loading" *ngIf="loading">Loading</span>
           <span *ngIf="failed">FPL is currently unavailable</span>
         </h1>
       </div>
