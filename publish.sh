@@ -11,7 +11,22 @@ then
 fi
 
 npm run lint;
+
+if [[$? -ne 0]] ; then
+    exit 1
+fi
+
 npm run test -- --watch=false;
+
+if [[$? -ne 0]] ; then
+    exit 1
+fi
+
+npm run build;
+
+if [[$? -ne 0]] ; then
+    exit 1
+fi
 
 echo version...;
 npm version patch;
@@ -19,8 +34,6 @@ npm version patch;
 NEW_VERSION=$(node -e "console.log(require('./package.json').version);");
 
 git push origin head;
-
-npm run build;
 
 echo push to aws...;
 aws s3 sync ./dist/fpl s3://fpl.mattdsmith.co.uk/ --delete;
