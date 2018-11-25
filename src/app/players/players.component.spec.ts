@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { Overview } from '../models/overview';
 import { DataService } from '../data.service';
 import { FormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 class MockDataService {
   get data(): Observable<Overview> {
@@ -19,7 +20,7 @@ describe('PlayersComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PlayersComponent],
-      imports: [FormsModule],
+      imports: [FormsModule, ScrollingModule],
       providers: [{ provide: DataService, useClass: MockDataService }]
     })
       .compileComponents();
