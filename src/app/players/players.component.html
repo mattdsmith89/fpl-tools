@@ -106,8 +106,8 @@
       </div>
     </div>
   </cdk-virtual-scroll-viewport>
-  <cdk-virtual-scroll-viewport class="container is-fluid is-hidden-desktop" itemSize="48" minBufferPx="1680"
-    maxBufferPx="3360">
+  <cdk-virtual-scroll-viewport class="container is-fluid is-hidden-desktop" itemSize="48" minBufferPx="1440"
+    maxBufferPx="4320">
     <div class="width: 100%" *cdkVirtualFor="let player of filteredPlayers; let first = first; let last = last">
       <div class="has-text-centered" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">
         {{player.firstName}} {{player.lastName}}
