@@ -14,7 +14,7 @@
 </nav>
 
 <div *ngIf="hasData | async; else noData">
-  <fpl-notification></fpl-notification>
+  <fpl-notification class="is-hidden-touch"></fpl-notification>
   <router-outlet></router-outlet>
 </div>
 
@@ -23,7 +23,7 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          <span *ngIf="loading" class="is-app-loading">Loading...</span>
+          <span *ngIf="loading"><span class="loader"></span></span>
           <span *ngIf="failed">FPL is currently unavailable</span>
         </h1>
       </div>
