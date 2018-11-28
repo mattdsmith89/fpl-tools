@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="notification is-danger is-overlay" *ngIf="show" @fadeInOut>
       <button class="delete" (click)="hide()"></button>
-      {{gameweekName}} deadline is at <strong>{{gameweekDeadline | date:'HH:mm'}}</strong> on <strong>{{gameweekDeadline | date:'EEEE d MMMM'}}</strong>
+      {{gameweekName}} deadline is at <strong>{{gameweekDeadline | date:'shortTime'}}</strong> on <strong>{{gameweekDeadline | date:'EEEE d MMMM'}}</strong>
     </div>
 </div>
