@@ -152,8 +152,10 @@ export class PlayersComponent implements OnInit, OnDestroy {
   }
 
   public pointsHeat(player: Player): string {
-    const maxPoints = Math.max(...this.players.filter(p => p.position === player.position).map(p => p.points));
-    const minPoints = Math.min(...this.players.filter(p => p.position === player.position).map(p => p.points));
+    const maxPoints = Math.max(...this.players.filter(p => this.selectedFilter === 'ALL'
+      || p.position === player.position).map(p => p.points));
+    const minPoints = Math.min(...this.players.filter(p => this.selectedFilter === 'ALL'
+      || p.position === player.position).map(p => p.points));
 
     return this.heatClass(player.points, minPoints, maxPoints);
   }
@@ -166,29 +168,37 @@ export class PlayersComponent implements OnInit, OnDestroy {
   }
 
   public pp90Heat(player: Player): string {
-    const maxPP90 = Math.max(...this.players.filter(p => p.position === player.position && !isNaN(p.pointsPer90)).map(p => p.pointsPer90));
-    const minPP90 = Math.min(...this.players.filter(p => p.position === player.position && !isNaN(p.pointsPer90)).map(p => p.pointsPer90));
+    const maxPP90 = Math.max(...this.players.filter(p => (this.selectedFilter === 'ALL'
+      || p.position === player.position) && !isNaN(p.pointsPer90)).map(p => p.pointsPer90));
+    const minPP90 = Math.min(...this.players.filter(p => (this.selectedFilter === 'ALL'
+      || p.position === player.position) && !isNaN(p.pointsPer90)).map(p => p.pointsPer90));
 
     return this.heatClass(player.pointsPer90, minPP90, maxPP90);
   }
 
   public ppMilHeat(player: Player): string {
-    const maxPPmil = Math.max(...this.players.filter(p => p.position === player.position).map(p => p.pointsPerMillion));
-    const minPPmil = Math.min(...this.players.filter(p => p.position === player.position).map(p => p.pointsPerMillion));
+    const maxPPmil = Math.max(...this.players.filter(p => this.selectedFilter === 'ALL'
+      || p.position === player.position).map(p => p.pointsPerMillion));
+    const minPPmil = Math.min(...this.players.filter(p => this.selectedFilter === 'ALL'
+      || p.position === player.position).map(p => p.pointsPerMillion));
 
     return this.heatClass(player.pointsPerMillion, minPPmil, maxPPmil);
   }
 
   public priceHeat(player: Player): string {
-    const maxPrice = Math.max(...this.players.filter(p => p.position === player.position).map(p => p.currentPrice));
-    const minPrice = Math.min(...this.players.filter(p => p.position === player.position).map(p => p.currentPrice));
+    const maxPrice = Math.max(...this.players.filter(p => this.selectedFilter === 'ALL'
+      || p.position === player.position).map(p => p.currentPrice));
+    const minPrice = Math.min(...this.players.filter(p => this.selectedFilter === 'ALL'
+      || p.position === player.position).map(p => p.currentPrice));
 
     return this.heatClass(player.currentPrice, minPrice, maxPrice);
   }
 
   public valHeat(player: Player): string {
-    const maxValue = Math.max(...this.players.filter(p => p.position === player.position && !isNaN(p.value)).map(p => p.value));
-    const minValue = Math.min(...this.players.filter(p => p.position === player.position && !isNaN(p.value)).map(p => p.value));
+    const maxValue = Math.max(...this.players.filter(p => (this.selectedFilter === 'ALL'
+      || p.position === player.position) && !isNaN(p.value)).map(p => p.value));
+    const minValue = Math.min(...this.players.filter(p => (this.selectedFilter === 'ALL'
+      || p.position === player.position) && !isNaN(p.value)).map(p => p.value));
 
     return this.heatClass(player.value, minValue, maxValue);
   }
