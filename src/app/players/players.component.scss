@@ -64,6 +64,15 @@ cdk-virtual-scroll-viewport {
   }
 }
 
+.box.mobile {
+  margin: 0.5em;
+  padding: 0.5em;
+
+  .name {
+    margin-bottom: 0.5em;
+  }
+}
+
 .box {
   border: 3px solid;
   border-top: 0;
