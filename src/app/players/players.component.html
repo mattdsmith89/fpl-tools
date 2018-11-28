@@ -109,33 +109,61 @@
   <cdk-virtual-scroll-viewport class="container is-fluid is-hidden-desktop" itemSize="80" minBufferPx="2400"
     maxBufferPx="7200">
     <div class="box mobile {{teamClass(player)}}" *cdkVirtualFor="let player of filteredPlayers; let first = first; let last = last">
-      <div class="has-text-centered name" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">
-        {{player.firstName}} {{player.lastName}}
-      </div>
-      <div class="columns is-centered is-mobile">
-        <div class="column has-text-centered is-3">
-          <div class="tags has-addons">
-            <span class="tag">PTS</span>
-            <span class="tag {{pointsHeat(player)}}">
-              {{player.points}}
-            </span>
+      <div class="level is-mobile">
+        <div class="level-left">
+          <div class="level-item team">
+            <strong>{{teamCode(player)}}</strong>
+          </div>
+          <div class="level-item">
+            <div class="name">
+              <strong>{{player.firstName}} {{player.lastName}}</strong>
+            </div>
           </div>
         </div>
-        <div class="column has-text-centered is-5">
+        <div class="level-right">
+          <div class="level-item price">
+            <span class="tag {{priceHeat(player)}} price">{{playerPrice(player)}}</span>
+          </div>
+          <div class="level-item">
+            <span class="tag position {{positionClass(player)}}">{{player.position}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="level is-mobile">
+        <div class="level-item">
+          <span class="tag points {{pointsHeat(player)}}">
+            {{player.points}}
+          </span>
+        </div>
+        <div class="level-item">
           <div class="tags has-addons">
-            <span class="tag">AVG MINS</span>
-            <span class="tag {{minutesHeat(player)}}">
+            <span class="tag"><i class="fas fa-stopwatch"></i></span>
+            <span class="tag mins {{minutesHeat(player)}}">
               {{player.averageMinutes | number:'1.0-1'}}
             </span>
           </div>
         </div>
-        <div class="column has-text-centered is-4">
+        <div class="level-item">
           <div class="tags has-addons">
             <span class="tag">PPG</span>
             <span class="tag {{pp90Heat(player)}}">
               {{isNaN(player.pointsPer90) ? "N/A" :
               player.pointsPer90 | number:'1.0-1'}}
             </span>
+          </div>
+        </div>
+        <div class="level-item">
+          <div class="tags has-addons">
+            <span class="tag">PPM</span>
+            <span class="tag {{ppMilHeat(player)}} ppmil">{{player.pointsPerMillion | number:'1.0-1'}}</span>
+          </div>
+        </div>
+        <div class="level-item">
+          <div class="tags has-addons">
+            <span class="tag">VAL</span>
+            <span class="tag {{valHeat(player)}} value">
+              {{isNaN(player.value) ? "N/A" :
+              player.value | percent}}</span>
           </div>
         </div>
       </div>

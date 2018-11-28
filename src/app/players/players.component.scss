@@ -68,8 +68,51 @@ cdk-virtual-scroll-viewport {
   margin: 0.5em;
   padding: 0.5em;
 
-  .name {
+  .level-item {
+    max-width: 50vw;
+  }
+
+  .level-item .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .level {
     margin-bottom: 0.5em;
+  }
+
+  .team {
+    text-align: left;
+    width: 3em;
+    margin-right: 0;
+  }
+
+  .star {
+    width: 4em;
+    .dreamteam-star {
+      padding-left: 0;
+    }
+  }
+
+  .price {
+    margin-right: 0.25em;
+  }
+
+  .position {
+    width: 3em;
+  }
+
+  .tag {
+    &.points {
+      width: 2.5em;
+    }
+    &.mins {
+      width: 2.5em;
+    }
+    &.price {
+      width: 4em;
+    }
   }
 }
 
